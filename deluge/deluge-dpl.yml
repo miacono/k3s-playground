@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deluge
+  name: deluge-dpl
+  namespace: deluge-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deluge
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: deluge
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+        - 192.168.10.1
+        options:
+        - name: ndots
+          value: "5"
+        searches:
+        - deluge.svc.cluster.local
+        - svc.cluster.local
+        - cluster.local
+      containers:
+        - env:
+            - name: deluge_PublishedServerUrl
+              value: http://deluge.local
+            - name: TZ
+              value: Etc/UTC
+          image: lscr.io/linuxserver/deluge:latest
+          name: deluge
+          ports:
+            - containerPort: 8096
+          volumeMounts:
+            - mountPath: /config
+              name: deluge-config
+            - mountPath: /downloads
+              name: deluge-downloads
+      restartPolicy: Always
+      volumes:
+        - name: deluge-config
+          persistentVolumeClaim:
+            claimName: deluge-pvc-config
+        - name: deluge-cache
+          persistentVolumeClaim:
+            claimName: deluge-pvc-cache
