@@ -43,6 +43,8 @@ spec:
               name: deluge-config
             - mountPath: /downloads
               name: deluge-downloads
+            - mountPath: /completed
+              name: deluge-completed
       restartPolicy: Always
       volumes:
         - name: deluge-config
@@ -51,3 +53,6 @@ spec:
         - name: deluge-downloads
           persistentVolumeClaim:
             claimName: deluge-pvc-downloads
+        - name: deluge-completed
+          persistentVolumeClaim:
+            claimName: deluge-pvc-completed
