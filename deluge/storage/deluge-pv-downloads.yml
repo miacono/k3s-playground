@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: deluge-pv-cache
+  name: deluge-pv-downloads
   labels:
     app: deluge
 spec:
   storageClassName: ""
   claimRef:
-    name: deluge-pvc-cache
+    name: deluge-pvc-downloads
     namespace: deluge-ns  
   capacity:
     storage: 3Gi

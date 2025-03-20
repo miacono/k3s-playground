@@ -3,11 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: deluge
-  name: deluge-pvc-cache
+  name: deluge-pvc-config
   namespace: deluge-ns
 spec:
   storageClassName: ""
-  volumeName: deluge-pv-cache
+  volumeName: deluge-pv-config
   accessModes:
     - ReadWriteOnce
   resources:
