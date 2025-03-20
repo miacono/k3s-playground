@@ -48,6 +48,6 @@ spec:
         - name: deluge-config
           persistentVolumeClaim:
             claimName: deluge-pvc-config
-        - name: deluge-cache
+        - name: deluge-downloads
           persistentVolumeClaim:
-            claimName: deluge-pvc-cache
+            claimName: deluge-pvc-downloads
