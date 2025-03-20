@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jellyfin
+  name: jellyfin-dpl
+  namespace: jellyfin-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+        - 192.168.10.1
+        options:
+        - name: ndots
+          value: "5"
+        searches:
+        - mediaserver.svc.cluster.local
+        - svc.cluster.local
+        - cluster.local
+      containers:
+        - env:
+            - name: JELLYFIN_PublishedServerUrl
+              value: http://mediaserver.local
+            - name: TZ
+              value: Etc/UTC
+          image: lscr.io/linuxserver/jellyfin:latest
+          name: jellyfin
+          ports:
+            - containerPort: 8096
+          volumeMounts:
+            - mountPath: /config
+              name: jellyfin-config
+            - mountPath: /cache
+              name: jellyfin-cache
+            - mountPath: /media
+              name: jellyfin-media
+              readOnly: true
+            - mountPath: /opt/vc/lib
+              name: jellyfin-vc
+      restartPolicy: Always
+      volumes:
+        - name: jellyfin-config
+          persistentVolumeClaim:
+            claimName: jellyfin-pvc-config
+        - name: jellyfin-cache
+          persistentVolumeClaim:
+            claimName: jellyfin-pvc-cache
+        - name: jellyfin-media
+          persistentVolumeClaim:
+            claimName: jellyfin-pvc-media
+            readOnly: true
+        - name: jellyfin-vc
+          persistentVolumeClaim:
+            claimName: jellyfin-pvc-vc
