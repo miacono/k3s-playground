@@ -4,5 +4,5 @@
 
 ```bash
 kubectl get pods -A
-exec -n NAMESPACE --stdin --tty PODNAME -- /bin/bash
+kubectl exec -n NAMESPACE --stdin --tty PODNAME -- /bin/bash
 ```
