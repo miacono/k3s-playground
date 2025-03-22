@@ -8,8 +8,8 @@ metadata:
 spec:
   type: LoadBalancer      
   ports:
-    - name: "8096"
-      port: 8096
+    - name: "jf-9096"
+      port: 9096
       targetPort: 8096
   selector:
     app: jellyfin

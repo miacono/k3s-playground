@@ -31,13 +31,13 @@ spec:
       containers:
         - env:
             - name: JELLYFIN_PublishedServerUrl
-              value: http://mediaserver.local
+              value: http://popcorn.iacono.io
             - name: TZ
               value: Etc/UTC
           image: lscr.io/linuxserver/jellyfin:latest
           name: jellyfin
           ports:
-            - containerPort: 8096
+            - containerPort: 9096
           volumeMounts:
             - mountPath: /config
               name: jellyfin-config
