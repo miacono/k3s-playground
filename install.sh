@@ -2,6 +2,9 @@
 
 curl -sfL https://get.k3s.io | sh -
 
+# CertManager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.4/cert-manager.crds.yaml
+
 # Jellyfin
 mkdir -p /mnt/jellyfin/cache
 mkdir -p /mnt/jellyfin/config
