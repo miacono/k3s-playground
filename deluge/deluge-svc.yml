@@ -8,7 +8,7 @@ metadata:
 spec:
   type: LoadBalancer      
   ports:
-    - name: "8112"
+    - name: "deluge-8112"
       port: 8112
       targetPort: 8112
   selector:

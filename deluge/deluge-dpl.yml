@@ -20,7 +20,8 @@ spec:
       dnsPolicy: "None"
       dnsConfig:
         nameservers:
-        - 192.168.10.1
+        - 1.1.1.2
+        - 1.0.0.2
         options:
         - name: ndots
           value: "5"
@@ -30,8 +31,8 @@ spec:
         - cluster.local
       containers:
         - env:
-            - name: deluge_PublishedServerUrl
-              value: http://deluge.local
+            - name: DELUGE_PublishedServerUrl
+              value: http://delugetest.iacono.io
             - name: TZ
               value: Etc/UTC
           image: lscr.io/linuxserver/deluge:latest
