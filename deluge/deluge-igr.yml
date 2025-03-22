@@ -2,10 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: deluge-igr
+  namespace: deluge-ns
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
+  tls:
+    - secretName: delugetest-iacono-io-tls
+      hosts:
+        - delugetest.iacono.io
   ingressClassName: traefik
   rules:
-  - http:
+  - host: delugetest.iacono.io
+    http:
       paths:
       - path: /
         pathType: Prefix
