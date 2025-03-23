@@ -1,6 +1,6 @@
 # K3s Learning Playground: Jellyfin & Deluge
 
-This repository serves as a learning environment to explore and master K3s (a lightweight Kubernetes distribution). The main goal is to deploy and manage two applications: Jellyfin (a media server) and Deluge (a BitTorrent client).
+This repository serves as a learning environment to explore and master K3s (a lightweight Kubernetes distribution). The main goal is to deploy and manage two applications: Jellyfin (a media server) and Deluge (a BitTorrent client), and monitor them on Grafana (an open and composable observability platform).
 
 ## Contents
 
