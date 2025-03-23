@@ -28,3 +28,16 @@ kubectl create namespace deluge-ns
 
 find ./deluge/storage/ -maxdepth 1 -type f -name '*.yml' -exec kubectl apply -f {} \;
 find ./deluge/ -maxdepth 1 -type f -name '*.yml'  -exec kubectl apply -f {} \;
+
+# Monitoring
+cd ..
+git clone git@github.com:prometheus-operator/kube-prometheus.git
+cd ./kube-prometheus/
+kubectl apply --server-side -f manifests/setup
+kubectl wait \
+	--for condition=Established \
+	--all CustomResourceDefinition \
+	--namespace=monitoring
+kubectl apply -f manifests/
+cd ../k3s-playground/
+kubectl apply -f 
