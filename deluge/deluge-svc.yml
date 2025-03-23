@@ -11,5 +11,13 @@ spec:
     - name: "deluge-8112"
       port: 8112
       targetPort: 8112
+    - name: "deluge-56881tcp"
+      port: 56881
+      targetPort: 56881
+      protocol: TCP
+    - name: "deluge-56881udp"
+      port: 56881
+      targetPort: 56881
+      protocol: UDP
   selector:
     app: deluge

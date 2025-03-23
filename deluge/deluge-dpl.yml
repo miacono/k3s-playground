@@ -39,6 +39,9 @@ spec:
           name: deluge
           ports:
             - containerPort: 8096
+            - containerPort: 56881
+            - containerPort: 56881
+              protocol: UDP
           volumeMounts:
             - mountPath: /config
               name: deluge-config
