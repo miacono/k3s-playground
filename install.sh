@@ -2,6 +2,9 @@
 
 curl -sfL https://get.k3s.io | sh -
 
+# Longhorn
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.8.1/deploy/longhorn.yaml
+
 # CertManager
 kubectl create namespace cert-manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.1/cert-manager.yaml
